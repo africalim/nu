@@ -14,4 +14,4 @@ Welcome to the **Group `Nu` Africalim Workshop 2024** GitHub repository.
 
 Thank you to the people who have contributed to this project.
 
-[![Contributors](https://contrib.rocks/image?repo=africalim/nu)](https://github.com/africalim/nu/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=africalim/Nu)](https://github.com/africalim/nu/graphs/contributors)
