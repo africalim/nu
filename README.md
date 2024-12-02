@@ -1,6 +1,6 @@
 # Africalim Workshop 2024
 
-Welcome to the **Group Nu Africalim Workshop 2024** GitHub repository! 
+Welcome to the **Group `Nu` Africalim Workshop 2024** GitHub repository! 
 
 ---
 
@@ -11,7 +11,7 @@ Welcome to the **Group Nu Africalim Workshop 2024** GitHub repository!
 ---
 
 ## Team Members
-- Phillip Badenhorst (PhilPhysics)
-- Michael Sarkis (astronomike)
-- Member C
-- Member D
+
+Thank you to the people who have contributed to this project.
+
+[![Contributors](https://contrib.rocks/image?repo=africalim/nu)](https://github.com/africalim/nu/graphs/contributors)
