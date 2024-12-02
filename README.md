@@ -1,6 +1,6 @@
 # Africalim Workshop 2024
 
-Welcome to the **Group `Nu` Africalim Workshop 2024** GitHub repository! 
+Welcome to the **Group `Nu` Africalim Workshop 2024** GitHub repository. 
 
 ---
 
