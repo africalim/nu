@@ -12,6 +12,6 @@ Welcome to the **Group Nu Africalim Workshop 2024** GitHub repository!
 
 ## Team Members
 - Phillip Badenhorst (PhilPhysics)
-- Member B
+- Michael Sarkis (astronomike)
 - Member C
 - Member D
