@@ -1,0 +1,62 @@
+
+cabs:
+  greeter:
+    info: this says hello to 'who' 
+    flavour: python-code
+    command: |
+      open(where, "wt").write(f"Hello {who}!")
+      print(f"Wrote greeting for {who} to {where}")
+    inputs:
+      who:
+        dtype: str
+        required: true
+    outputs:
+      where:
+        dtype: File
+        required: true
+  doubler:
+    info: doubles the content of file 'where' to 'what'
+    flavour: python-code
+    inputs:
+      what:
+        dtype: File
+        required: true
+    outputs:
+      where:
+        dtype: File
+        required: true
+    command: |
+      data = open(what).read()
+      open(where, 'wt').write(f"{data}\n{data}\n")
+      print(f"Doubled up {what} to {where}")
+  printer:
+    info: prints file to console
+    inputs:
+      what:
+        dtype: File
+        required: true
+    flavour: python-code
+    command: print(open(what).read())
+
+hello:
+  info: This is my hello world recipe
+  inputs:
+    name:
+      dtype: str
+      default: world
+  steps:
+    ola:
+      info: this runs the greeter cab to print a greeting
+      cab: greeter
+      params:
+        who: =recipe.name
+        where: greeting.txt
+    two-up:
+      cab: doubler
+      params:
+        what: =previous.where
+        where: greeting2.txt
+    print:
+      cab: printer
+      params:
+        what: =steps.two-up.where
