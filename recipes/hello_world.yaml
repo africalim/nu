@@ -1,3 +1,9 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
 
 cabs:
   greeter:
