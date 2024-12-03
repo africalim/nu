@@ -3,15 +3,19 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "your_package_name"
+name = "africalim-nu"
 version = "0.1.0"
-description = "A brief description of your package"
+dynamic = ["version"]
+description = "The SelfCal package for the Africalim Workshop 2024 of Group Nu"
 authors = [
-    { name = "Your Name", email = "you@example.com" }
+    { name = "Phillip Badenhorst" }
+    { name = "Michael Sarkis" }
+    { name = "Athanaseus Javas Ramaila" }
+    { name = "Lwandile Gwebushe" }
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.6"
+requires-python = ">=3.10"
 keywords = ["keyword1", "keyword2"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -19,15 +23,11 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "dependency1>=1.0",
-    "dependency2"
+    "stimela>2.0.0",
+    "cult-cargo"
 ]
 
-[project.urls]
-Homepage = "https://github.com/yourusername/your_package_name"
-Documentation = "https://github.com/yourusername/your_package_name#readme"
-Source = "https://github.com/yourusername/your_package_name"
+[project.optional-dependencies]
+backend = ["kubernetes"]
 
-[tool.setuptools.packages.find]
-where = ["src"]
 
