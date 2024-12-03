@@ -8,9 +8,9 @@ version = "0.1.0"
 dynamic = ["version"]
 description = "The SelfCal package for the Africalim Workshop 2024 of Group Nu"
 authors = [
-    { name = "Phillip Badenhorst" }
-    { name = "Michael Sarkis" }
-    { name = "Athanaseus Javas Ramaila" }
+    { name = "Phillip Badenhorst" },
+    { name = "Michael Sarkis" },
+    { name = "Athanaseus Javas Ramaila" },
     { name = "Lwandile Gwebushe" }
 ]
 readme = "README.md"
