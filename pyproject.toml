@@ -26,12 +26,14 @@ packages = [{include = "nu"},]
 
 [tool.poetry.scripts]
 hello = "nu.apps.hello:main"
+predict = "nu.apps.predict:main"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.10, < 3.13"
 codex-africanus = "^0.4"
 cult-cargo = "*"
-stimela = "^2.0.1"
+dask-ms = "*"
+stimela = "*"
 
 # Optional dependencies start here
 pytest = { version = "*", optional=true }
