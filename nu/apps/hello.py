@@ -1,14 +1,18 @@
 #! /usr/bin/python
 
 import click
+from pathlib import Path
 from scabha.schema_utils import clickify_parameters
 from omegaconf import OmegaConf
 
-schemas = OmegaConf.load("nu/recipes/hello.yml")
+recipe = Path(__file__).parent.parent / "recipes/hello.yml"
+
+schemas = OmegaConf.load(recipe)
 
 @click.command("hello") 
 @clickify_parameters(schemas.cabs.get("hello"))
 def main(**kw):
+    print(recipe)
     hello(**kw)
 
 def hello(name):
