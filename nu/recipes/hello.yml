@@ -1,0 +1,25 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
+
+cabs:
+  hello:  # cab
+    info: this runs the clickified hello app 
+    command: python3.10 nu/apps/hello.py
+    inputs:
+      name:
+        dtype: str
+        required: true
+    # outputs:
+    #   {}
+    #   policies:
+    #     pass_missing_as_none: true
+
+# hello: #recipe
+#   info: clickified hello recipe
+#   steps:
+#     hello: #step
+#       cab: hello
