@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "your_package_name"
+version = "0.1.0"
+description = "A brief description of your package"
+authors = [
+    { name = "Your Name", email = "you@example.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.6"
+keywords = ["keyword1", "keyword2"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "dependency1>=1.0",
+    "dependency2"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/your_package_name"
+Documentation = "https://github.com/yourusername/your_package_name#readme"
+Source = "https://github.com/yourusername/your_package_name"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
