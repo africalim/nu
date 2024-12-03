@@ -6,12 +6,12 @@ from omegaconf import OmegaConf
 
 schemas = OmegaConf.load("nu/recipes/hello.yml")
 
-@click.command() 
+@click.command("hello") 
 @clickify_parameters(schemas.cabs.get("hello"))
-def hello(**kw):
-    # say hello
-    opts = OmegaConf.create(kw)
-    click.echo(f"Hello {opts.name}!")
+def main(**kw):
+    hello(**kw)
 
-def main():
-    hello()
+def hello(name):
+    greeting = f"Hello {name}!"
+    click.echo(greeting)
+    return greeting
