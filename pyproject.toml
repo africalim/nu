@@ -1,33 +1,56 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "africalim-nu"
-version = "0.1.0"
+version = "0.0.1"
 dynamic = ["version"]
 description = "The SelfCal package for the Africalim Workshop 2024 of Group Nu"
 authors = [
-    { name = "Phillip Badenhorst" },
-    { name = "Michael Sarkis" },
-    { name = "Athanaseus Javas Ramaila" },
-    { name = "Lwandile Gwebushe" }
+    "Phillip Badenhorst",
+    "Michael Sarkis",
+    "Athanaseus Javas Ramaila",
+    "Lwandile Gwebushe"
 ]
 readme = "README.md"
-license = { file = "LICENSE" }
-requires-python = ">=3.10"
-keywords = ["keyword1", "keyword2"]
+license = "MIT"
+homepage = "https://github.com/africalim/nu"
+repository = "https://github.com/africalim/nu.git"
+keywords = ["Astronomy", "Self-Cal"]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+          "Development Status :: 4 - Beta",
+          "Intended Audience :: Science/Research",
+          "License :: OSI Approved :: MIT License",
+          "Operating System :: POSIX :: Linux",
+          "Programming Language :: Python",
+          "Topic :: Scientific/Engineering :: Astronomy"
 ]
-dependencies = [
-    "stimela>2.0.0",
-    "cult-cargo"
-]
+packages = [{include = "nu"},]
 
-[project.optional-dependencies]
-backend = ["kubernetes"]
+[tool.poetry.scripts]
+hello = "nu.apps.hello:main"
 
+[tool.poetry.dependencies]
+python = "^3.10"
+codex-africanus = "^0.4"
+cult-cargo = "*"
+stimela = "^2.0.1"
+
+# Optional dependencies start here
+pytest = { version = "*", optional=true }
+pytest-flake8 = { version = "*", optional=true }
+flaky =  { version = "*", optional=true }
+
+[build-system]
+requires = ["setuptools", "poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.extras]
+testing = ["pytest", "pytest-flake8", "flaky"]
+
+[tool.poetry.group.tests]
+optional = true
+[tool.poetry.group.tests.dependencies]
+pytest = "*"
+flake8 = "*"
+
+[tool.pytest.ini_options]
+testpaths = ["nu/nu/tests"]
 

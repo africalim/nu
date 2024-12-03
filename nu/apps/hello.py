@@ -13,5 +13,5 @@ def hello(**kw):
     opts = OmegaConf.create(kw)
     click.echo(f"Hello {opts.name}!")
 
-if __name__ == '__main__':
+def main():
     hello()
