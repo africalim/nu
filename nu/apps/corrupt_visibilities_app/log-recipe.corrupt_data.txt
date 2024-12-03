@@ -1,0 +1,16 @@
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO: ### validated inputs
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO: cab import:
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO:   ms = /home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO:   seed = 414
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO:   noise_std = 0.3
+### running [python]
+# INFO:CorruptVisibilities:Opening Measurement Set: /home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS
+# INFO:CorruptVisibilities:Number of antennas: 27
+# INFO:CorruptVisibilities:Number of channels: 8
+# INFO:CorruptVisibilities:Number of polarizations: 4
+# INFO:CorruptVisibilities:Applying random phase-only gains to visibilities.
+# INFO:CorruptVisibilities:Adding i.i.d. noise with standard deviation 0.3 to visibilities.
+# INFO:CorruptVisibilities:Writing corrupted data to DATA column.
+# INFO:CorruptVisibilities:Corruption process completed successfully.
+# Successful read/write open of default-locked table /home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS: 24 columns, 21060 rows
+2024-12-03 18:42:27 STIMELA.recipe.corrupt_data INFO: [python] returns exit code 0 after 0:00:00

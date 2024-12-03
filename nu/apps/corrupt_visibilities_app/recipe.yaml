@@ -1,0 +1,43 @@
+cabs:
+  corrupt_visibilities:
+    info: Corrupts model visibilities with random phase-only gains and writes to the DATA column.
+    flavour: python-code
+    command: |
+      import subprocess
+
+      ms1 = ms
+      seed1 = seed
+      noise_std1 = noise_std
+
+      subprocess.run(["python3", "run.py", f"--ms={ms1}", f"--seed={seed1}", f"--noise-std={noise_std1}"])
+
+    inputs:
+      ms:
+        dtype: MS
+        required: true
+      seed:
+        dtype: int
+        default: 42
+      noise_std:
+        dtype: float
+        default: 0.0
+
+recipe:
+  info: Corrupts the visibilities in a supplied Measurement Set
+  inputs:
+    ms:
+      dtype: MS
+      required: true
+    seed:
+      dtype: int
+      default: 42
+    noise_std:
+        dtype: float
+        default: 0.0
+  steps:
+    corrupt_data:
+      cab: corrupt_visibilities
+      params:
+        ms: =recipe.ms
+        seed: =recipe.seed
+        noise_std: =recipe.noise_std

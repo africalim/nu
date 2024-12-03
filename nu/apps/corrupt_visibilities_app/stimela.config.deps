@@ -1,0 +1,25 @@
+/home/phil/africalim/lib/python3.10/site-packages/stimela:
+  version: 2.0.1.1
+  mtime: 1733233904.5568337
+  mtime_str: Tue Dec  3 15:51:44 2024
+/home/phil/africalim/lib/python3.10/site-packages/stimela/config.py:
+  origin: /home/phil/africalim/lib/python3.10/site-packages/stimela
+/home/phil/africalim/lib/python3.10/site-packages/scabha/configuratt/__init__.py:
+  origin: /home/phil/africalim/lib/python3.10/site-packages/stimela
+/home/phil/africalim/lib/python3.10/site-packages/scabha/configuratt/cache.py:
+  version: null
+  mtime: 1733233904.5278358
+  mtime_str: Tue Dec  3 15:51:44 2024
+  md5hash: 413c28261f00873293bdb574eda39cf8
+/home/phil/africalim/lib/python3.10/site-packages/stimela/stimela.conf:
+  mtime: 1733233904.5338354
+  mtime_str: Tue Dec  3 15:51:44 2024
+  md5hash: 33a3969ba8a008b7cde77c62b72bcf4b
+/home/phil/africalim/lib/python3.10/site-packages/cultcargo/stimela.conf:
+  mtime: 1733233904.6318288
+  mtime_str: Tue Dec  3 15:51:44 2024
+  md5hash: d8547362d63e7bb23c550ef5ac13fc0b
+/home/phil/africalim/lib/python3.10/site-packages/cultcargo/genesis/cult-cargo-base.yml:
+  mtime: 1733233904.6268291
+  mtime_str: Tue Dec  3 15:51:44 2024
+  md5hash: 3d21e319279df2981906e847d7b3a4dc

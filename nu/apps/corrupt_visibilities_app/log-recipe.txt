@@ -1,0 +1,13 @@
+2024-12-03 18:42:27 STIMELA.recipe INFO: selecting recipe steps for (sub)recipe: [bold green]recipe[/bold green]
+2024-12-03 18:42:27 STIMELA.recipe INFO: ### validated inputs
+2024-12-03 18:42:27 STIMELA.recipe INFO: recipe 'recipe':
+2024-12-03 18:42:27 STIMELA.recipe INFO:   ms = /home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS
+2024-12-03 18:42:27 STIMELA.recipe INFO:   seed = 414
+2024-12-03 18:42:27 STIMELA.recipe INFO:   noise_std = 0.3
+2024-12-03 18:42:27 STIMELA.recipe INFO: running recipe 'recipe'
+2024-12-03 18:42:27 STIMELA.recipe INFO: processing step 'corrupt_data'
+2024-12-03 18:42:27 STIMELA.recipe INFO: recipe 'recipe' executed successfully
+2024-12-03 18:42:27 STIMELA.recipe INFO: run successful after 0:00:00
+2024-12-03 18:42:27 STIMELA.recipe INFO: saved full profiling stats to ./stimela.stats.full
+2024-12-03 18:42:27 STIMELA.recipe INFO: saved summary to ./stimela.stats.summary.txt
+2024-12-03 18:42:27 STIMELA.recipe INFO: last log directory was [bold green].[/bold green]
