@@ -31,10 +31,11 @@ corrupt = "nu.apps.corrupt:main"
 
 [tool.poetry.dependencies]
 python = "^3.10, <3.13"
+astro-tigger-lsm = "*"
+dask-ms = "*"
 codex-africanus = "^0.4"
 cult-cargo = "*"
 stimela = "^2.0.1"
-dask-ms = "*"
 
 # Optional dependencies start here
 pytest = { version = "*", optional=true }
