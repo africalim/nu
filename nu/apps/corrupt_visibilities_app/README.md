@@ -4,7 +4,7 @@ This Stimela app corrupts model visibilities in a Measurement Set with random ph
 
 ## Usage
 
-```bash
+.. code:: bash
 $ python3 run.py ms=/path/to/measurement_set.ms seed=42 noise_std=0.4
 
 ### Parameters
