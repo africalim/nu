@@ -43,11 +43,11 @@ jobs:
     - name: Test predict app
       run: |
         predict --help
-        predict nu/tests/Test_MS
+        predict tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Test corrupt app
       run: |
         corrupt --help
-        corrupt --ms nu/tests/Test_MS
+        corrupt --ms tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Unit testing
       run: |
         pytest
