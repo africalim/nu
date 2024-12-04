@@ -43,12 +43,12 @@ jobs:
     - name: Test predict app
       run: |
         predict --help
-        ls tests/Test_MS/test_ascii_1h60.0s.MS
-        predict tests/Test_MS/test_ascii_1h60.0s.MS
+        ls nu/tests/Test_MS/test_ascii_1h60.0s.MS
+        predict nu/tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Test corrupt app
       run: |
         corrupt --help
-        corrupt --ms tests/Test_MS/test_ascii_1h60.0s.MS
+        corrupt --ms nu/tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Unit testing
       run: |
         pytest
