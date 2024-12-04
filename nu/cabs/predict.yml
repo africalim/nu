@@ -1,0 +1,54 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.taskname}
+    nest: 10
+    symlink: log
+  backend:
+    select: native
+    native:
+      enable: true
+    kube:
+      enable: false
+    rlimits:
+      NOFILE: 61666  # set high limit on the number of open files
+
+cabs:
+  predict:
+    info: Populate a measurement set (MS) with source visibilities
+    command: predict
+    backend:
+      rlimits:
+        NOFILE: 999
+    inputs:
+      msname:
+        info: "Measurement set name"
+        dtype: MS
+        required: true
+        policies:
+          positional: true
+      ra:
+        info: "Right Ascension (RA) of the source in degrees (default: phase center)"
+        dtype: float
+        required: false
+        default: null
+      dec:
+        info: "Declination (DEC) of the source in degrees (default: phase center)"
+        dtype: float
+        required: false
+        default: null
+      flux:
+        info: "Flux of the source (default: 1)"
+        dtype: float
+        required: false
+        default: 1.0
+      column:
+        info: "Column name for visibility storage (default: MODEL_DATA)"
+        dtype: str
+        required: false
+        default: MODEL_DATA
+    outputs:
+      stdout:
+        info: Confirmation or error message
+        dtype: str
+        implicit: "Predicting source at RA {current.ra}, DEC {current.dec} into {current.msname}"
