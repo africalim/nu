@@ -43,6 +43,7 @@ jobs:
     - name: Test predict app
       run: |
         predict --help
+        ls tests/Test_MS/test_ascii_1h60.0s.MS
         predict tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Test corrupt app
       run: |
