@@ -27,6 +27,7 @@ packages = [{include = "nu"},]
 [tool.poetry.scripts]
 hello = "nu.apps.hello:main"
 predict = "nu.apps.predict:main"
+corrupt = "nu.apps.corrupt_visibilities_app.corrupt:main"
 
 [tool.poetry.dependencies]
 python = "^3.10, < 3.13"
