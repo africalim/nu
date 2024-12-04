@@ -40,6 +40,14 @@ jobs:
       run: |
         hello --help
         hello --name Michael
-    #- name: Test with pytest
-    #  run: |
-    #    pytest
+    - name: Test predict app
+      run: |
+        predict --help
+        predict nu/tests/Test_MS
+    - name: Test corrupt app
+      run: |
+        corrupt --help
+        corrupt --ms nu/tests/Test_MS
+    - name: Unit testing
+      run: |
+        pytest
