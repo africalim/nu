@@ -26,6 +26,7 @@ packages = [{include = "nu"},]
 
 [tool.poetry.scripts]
 hello = "nu.apps.hello:main"
+corrupt = "nu.apps.corrupt_visibilities_app.corrupt:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
