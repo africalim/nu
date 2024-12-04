@@ -12,7 +12,6 @@ schemas = OmegaConf.load(recipe)
 @click.command("hello") 
 @clickify_parameters(schemas.cabs.get("hello"))
 def main(**kw):
-    print(recipe)
     hello(**kw)
 
 def hello(name):
