@@ -68,11 +68,8 @@ def predict_source(msname: str, ra: float = None, dec: float = None, flux: float
     # Update the measurement set with the predicted visibilities
     # Assign visibilities to MODEL_DATA array on the dataset
     xds = xds.assign(**{column: (("row", "chan", "corr"), dask_visibilities)})
-    # Create a write to the table
-    write = xds_to_table(xds, msname, [column])
-    # Submit all graph computations in parallel
-    dask.visualize([write])
-    dask.compute(write)
+    # Write to the table
+    da.compute(xds_to_table(xds, msname, [column]))
     print(f"Successfully populated measurement set '{msname}' with column '{column}'.")
     return visibilities
 
