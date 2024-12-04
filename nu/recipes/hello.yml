@@ -8,7 +8,7 @@ opts:
 cabs:
   hello:  # cab
     info: this runs the clickified hello app 
-    command: python3.10 nu/apps/hello.py
+    command: hello
     inputs:
       name:
         dtype: str
