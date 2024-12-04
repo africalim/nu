@@ -1,0 +1,21 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
+
+cabs:
+  corrupt_visibilities:
+    info: Corrupts model visibilities with random phase-only gains and writes to the DATA column.
+    command: corrupt
+    inputs:
+      ms:
+        dtype: MS
+        required: true
+      seed:
+        dtype: int
+        default: 42
+      noise_std:
+        dtype: float
+        default: 0.0
