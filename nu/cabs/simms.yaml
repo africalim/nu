@@ -1,0 +1,71 @@
+cabs:
+  simms:
+    info: Simulate observations using KAT-7 with CASA (https://github.com/simms-tool/simms.git)
+    command: simms
+    image:
+      _use: vars.cult-cargo.images
+      name: simms
+    policies:
+      prefix: '-'
+    inputs:
+      observatory:
+        dtype: str  # Changed from Observatory to str
+        info: Telescope configuration (e.g., KAT-7)
+        nom_de_guerre: 'T'
+        default: 'kat-7'
+      toolkit:
+        dtype: str  # Changed from Toolkit to str
+        info: Simulation toolkit (e.g., CASA)
+        nom_de_guerre: 't'
+        default: 'casa'
+      label:
+        dtype: str
+        info: Output label for the simulation
+        nom_de_guerre: 'l'
+        default: 'test_casa'
+      declination:
+        dtype: str  # Use str to define declination
+        info: Declination of the observation
+        nom_de_guerre: '-dec'
+        default: '-30d0m0s'
+      right_ascension:
+        dtype: str  # Use str to define right ascension
+        info: Right ascension of the observation
+        nom_de_guerre: 'ra'
+        default: '0h0m0s'
+      start_time:
+        dtype: int  # Time values can be handled as integers
+        info: Start time for the observation
+        nom_de_guerre: 'st'
+        default: '1'
+      duration:
+        dtype: int
+        info: Duration of the observation in minutes
+        nom_de_guerre: 'dt'
+        default: '60'
+      frequency:
+        dtype: str  # Use str for the frequency (e.g., 1.4GHz)
+        info: Central frequency of the observation
+        nom_de_guerre: 'f0'
+        default: '1.4GHz'
+      num_channels:
+        dtype: int
+        info: Number of channels in the observation
+        nom_de_guerre: 'nc'
+        default: '4'
+      channel_width:
+        dtype: str  # Frequency can also be a string (e.g., 10MHz)
+        info: Width of each frequency channel
+        nom_de_guerre: 'df'
+        default: '10MHz'
+      antenna_file:
+        dtype: str  # File path is handled as a string
+        info: Antenna configuration file path
+        #nom_de_guerre: '-antennas'
+        default: 'Simms/observatories/KAT7_ANTENNAS'
+        policies:
+          positional: true  
+    outputs:
+      outfile:
+        dtype: Directory
+        implicit: =GLOB("*{current.label}")
