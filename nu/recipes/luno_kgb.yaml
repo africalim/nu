@@ -1,0 +1,212 @@
+_include:
+  - (cultcargo)quartical.yml
+
+opts:
+  log:
+    dir: logs
+    nest: 2
+  backend:
+    select: native
+
+first-gen:
+  name: 1gc
+  info: First generation KGB calibration using QuartiCal
+
+  assign:
+    ms_cals: s3://ratt-public-data/LBAND_LUNO_CALIBRATORS.zarr
+    ms_target: s3://ratt-public-data/LBAND_LUNO_TARGET.zarr
+
+  inputs:
+    basedir:
+      dtype: str
+      info: Location to write gain table
+    model-column:
+      dtype: str
+      default: MODEL_DATA
+
+  steps:
+    kgb:
+      cab: quartical
+      info: GKB on the primary where
+            G = time variable complex gain,
+            K = per scan delay
+            B = frequency variable complex gain (bandpass)
+      params:
+        input_ms.path: =recipe.ms_cals
+        input_ms.time_chunk: 0
+        input_ms.freq_chunk: 0
+        input_ms.select_uv_range: [0,0]
+        input_ms.group_by: [FIELD_ID,DATA_DESC_ID,SCAN_NUMBER]  # with and without SCAN_NUMBER
+        input_ms.select_fields: [1]
+        input_ms.select_corr: [0, 3]
+        input_model.recipe: '{recipe.model-column}'
+        input_model.apply_p_jones: false
+        solver.terms: [G,K,B]
+        solver.iter_recipe: [150,150,150]
+        solver.propagate_flags: false
+        solver.robust: false
+        solver.threads: 8
+        solver.reference_antenna: 2
+        output.gain_directory: '{recipe.basedir}/gkb.qc'
+        output.log_directory: '{recipe.basedir}/'
+        output.overwrite: true
+        # output.products: [corrected_data, corrected_weight]
+        # output.columns: [CORRECTED_DATA_QCAL, WEIGHT_SPECTRUM]
+        output.flags: false
+        output.apply_p_jones_inv: false
+        # output.net_gains: [G,K,B]
+        mad_flags.enable: false
+        dask.threads: 2
+        dask.scheduler: threads
+        G.type: diag_complex
+        G.time_interval: 0
+        G.freq_interval: 0
+        K.type: delay
+        K.time_interval: 0
+        K.freq_interval: 0
+        K.initial_estimate: true
+        B.type: diag_complex
+        B.time_interval: 0
+        B.freq_interval: 8
+
+    # convert G to abs
+    g_to_abs:
+      cab: G2abs
+      info: Replace G with abs(G) since we won't need the phase again
+      params:
+        source: '{recipe.basedir}/gkb.qc/G'
+
+    phasecal:
+      cab: quartical
+      info: Delay and offset on the secondary
+      params:
+        input_ms.path: =recipe.ms_cals
+        input_ms.time_chunk: 0
+        input_ms.freq_chunk: 0
+        input_ms.select_uv_range: [0,0]
+        input_ms.group_by: [FIELD_ID,DATA_DESC_ID,SCAN_NUMBER]
+        input_ms.select_fields: [2]
+        input_model.recipe: '{recipe.model-column}'
+        input_model.apply_p_jones: false
+        solver.terms: [G, K, B, D]
+        solver.iter_recipe: [0, 0, 0, 150]
+        solver.propagate_flags: false
+        solver.robust: false
+        solver.threads: 8
+        solver.reference_antenna: 2
+        output.gain_directory: '{recipe.basedir}/delay_and_offset.qc'
+        output.log_directory: '{recipe.basedir}/'
+        output.overwrite: true
+        # output.products: [corrected_data, corrected_weight]
+        # output.columns: [CORRECTED_DATA_QCAL, WEIGHT_SPECTRUM]
+        output.flags: false
+        output.apply_p_jones_inv: false
+        output.net_gains: [G,K,B,D]
+        mad_flags.enable: false
+        dask.threads: 4
+        dask.scheduler: threads
+        G.type: diag_complex  #amp
+        G.time_interval: 1
+        G.freq_interval: 0
+        G.load_from: '{recipe.basedir}/gkb.qc/Ga'
+        K.type: delay
+        K.time_interval: 1
+        K.freq_interval: 0
+        K.initial_estimate: false
+        K.load_from: '{recipe.basedir}/gkb.qc/K'
+        B.type: diag_complex
+        B.time_interval: 0
+        B.freq_interval: 1
+        B.load_from: '{recipe.basedir}/gkb.qc/B'
+        D.type: delay_and_offset
+        D.time_interval: 0
+        D.freq_interval: 0
+        D.initial_estimate: false
+
+    transfer:
+      cab: quartical
+      info: Transfer solutions to target field
+      params:
+        input_ms.path: =recipe.ms_target
+        input_ms.time_chunk: 0
+        input_ms.freq_chunk: 256
+        input_ms.select_uv_range: [0,0]
+        input_ms.group_by: [FIELD_ID,DATA_DESC_ID,SCAN_NUMBER]
+        input_ms.select_fields: [0]
+        input_ms.sigma_column: SIGMA_SPECTRUM
+        input_model.apply_p_jones: false
+        solver.terms: [G, K, B, D]
+        solver.iter_recipe: [0, 0, 0, 0]
+        solver.propagate_flags: false
+        solver.robust: false
+        solver.threads: 4
+        solver.reference_antenna: 2
+        output.gain_directory: '{recipe.basedir}/target_init.qc'
+        output.log_directory: '{recipe.basedir}/'
+        output.overwrite: true
+        # output.products: [corrected_data, corrected_weight]
+        # output.columns: [CORRECTED_DATA_QCAL, WEIGHT_SPECTRUM]
+        output.flags: false
+        output.apply_p_jones_inv: false
+        output.net_gains: [G,K,B,D]
+        mad_flags.enable: false
+        dask.threads: 4
+        dask.scheduler: threads
+        G.type: diag_complex  #amp
+        G.time_interval: 1
+        G.freq_interval: 0
+        G.load_from: '{recipe.basedir}/gkb.qc/Ga'
+        G.interp_mode: amp
+        K.type: delay
+        K.time_interval: 1
+        K.freq_interval: 0
+        K.initial_estimate: false
+        K.load_from: '{recipe.basedir}/gkb.qc/K'
+        B.type: diag_complex
+        B.time_interval: 0
+        B.freq_interval: 1
+        B.load_from: '{recipe.basedir}/gkb.qc/B'
+        D.type: delay_and_offset  # phase to target
+        D.time_interval: 1
+        D.freq_interval: 0
+        D.initial_estimate: false
+        D.load_from: '{recipe.basedir}/delay_and_offset.qc/D'
+
+cabs:
+  G2abs:
+    name: G2abs
+    flavour: python-code
+    backend:
+      select: native
+      native:
+        virtual_env: ~/.venv/pfbn
+    image:  # This is a bit dodgy - python-astro doesn't have zarr support.
+      name: quartical
+      version: 0.2.5-cc0.1.3
+    command: |
+      import dask
+      import dask.array as da
+      from daskms.experimental.zarr import xds_to_zarr, xds_from_zarr
+      gain_table = '::'.join(source.rsplit('/', 1))
+      G = xds_from_zarr(gain_table)
+      for g in G:
+        g['gains'] = (g.gains.dims, da.abs(g.gains.data))
+      abs_gain_table = gain_table.rstrip('G') + 'Ga'
+      print(f'Writing to {abs_gain_table}')
+      writes = xds_to_zarr(G, abs_gain_table)
+      dask.compute(writes)
+      print('Done')
+
+      
+    inputs:
+      source:
+        info: The location to fetch G term from
+        dtype: URI
+        required: true
+
+    outputs:
+      {}
+
+  quartical:
+    image:
+      version: 0.2.5-cc0.1.3  # Use latest QuartiCal release.

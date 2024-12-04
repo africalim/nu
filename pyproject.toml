@@ -32,8 +32,9 @@ predict = "nu.apps.predict:main"
 python = "^3.10, < 3.13"
 codex-africanus = "^0.4"
 cult-cargo = "*"
-dask-ms = "*"
-stimela = "*"
+stimela = "^2.0.1"
+numpy = "<2.0.0"
+
 
 # Optional dependencies start here
 pytest = { version = "*", optional=true }
@@ -55,4 +56,3 @@ flake8 = "*"
 
 [tool.pytest.ini_options]
 testpaths = ["nu/nu/tests"]
-
