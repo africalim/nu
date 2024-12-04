@@ -1,3 +1,10 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
+
 cabs:
   corrupt_visibilities:
     info: Corrupts model visibilities with random phase-only gains and writes to the DATA column.
@@ -9,7 +16,7 @@ cabs:
       seed1 = seed
       noise_std1 = noise_std
 
-      subprocess.run(["python3", "run.py", f"--ms={ms1}", f"--seed={seed1}", f"--noise-std={noise_std1}"])
+      subprocess.run(["python3", "corrupt.py", f"--ms={ms1}", f"--seed={seed1}", f"--noise-std={noise_std1}"])
 
     inputs:
       ms:

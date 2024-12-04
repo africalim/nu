@@ -20,7 +20,7 @@ COPY requirements.txt /corrupt_visibilities_app/requirements.txt
 RUN pip3 install --no-cache-dir -r /corrupt_visibilities_app/requirements.txt
 
 # Copy the app script
-COPY run.py /corrupt_visibilities_app/run.py
+COPY corrupt.py /corrupt_visibilities_app/corrupt.py
 
 # Entry point
-ENTRYPOINT ["python3", "/corrupt_visibilities_app/run.py"]
+ENTRYPOINT ["python3", "/corrupt_visibilities_app/corrupt.py"]
