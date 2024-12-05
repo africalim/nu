@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11"] # Add 3.12 when casa works with it
 
     steps:
     - uses: actions/checkout@v4
@@ -48,6 +48,10 @@ jobs:
       run: |
         corrupt --help
         corrupt --ms nu/tests/Test_MS/test_ascii_1h60.0s.MS
+    - name: Test solve app
+      run: |
+        solve --help
+        solve --ms nu/tests/Test_MS/test_ascii_1h60.0s.MS
     - name: Unit testing
       run: |
         pytest
