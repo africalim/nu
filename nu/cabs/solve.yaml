@@ -1,0 +1,15 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
+
+cabs:
+  solve:
+    info: Performs phase-only calibration on the data and writes corrected data to a corrected column.
+    command: solve
+    inputs:
+      ms:
+        dtype: MS
+        required: true

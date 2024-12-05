@@ -28,6 +28,7 @@ packages = [{include = "nu"},]
 hello = "nu.apps.hello:main"
 predict = "nu.apps.predict:main"
 corrupt = "nu.apps.corrupt:main"
+solve = "nu.apps.solve:main"
 
 [tool.poetry.dependencies]
 python = "^3.10, <3.13"
