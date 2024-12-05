@@ -14,7 +14,7 @@ from casacore.tables import table
 import IPython
 
 # Load the schema for parameters
-schema_path = Path(__file__).parent.parent / "recipes/corrupt.yaml"
+schema_path = os.path.join(os.path.dirname(__file__), "../cabs/corrupt.yaml")
 schemas = OmegaConf.load(schema_path)
 
 @click.command("corrupt_visibilities")
