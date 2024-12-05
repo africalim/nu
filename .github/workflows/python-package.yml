@@ -43,7 +43,7 @@ jobs:
     - name: Test predict app
       run: |
         predict --help
-        predict nu/tests/Test_MS/test_ascii_1h60.0s.MS --ra 0 --dec 30 --column DATA
+        predict nu/tests/Test_MS/test_ascii_1h60.0s.MS --ra 0 --dec 0 --column DATA
     - name: Test corrupt app
       run: |
         corrupt --help
