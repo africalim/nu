@@ -32,15 +32,17 @@ corrupt = "nu.apps.corrupt:main"
 [tool.poetry.dependencies]
 python = "^3.10, <3.13"
 astro-tigger-lsm = "*"
-dask-ms = "*"
 codex-africanus = "^0.4"
 cult-cargo = "*"
+dask-ms = "*"
 stimela = "^2.0.1"
 
 # Optional dependencies start here
-pytest = { version = "*", optional=true }
-pytest-flake8 = { version = "*", optional=true }
-flaky =  { version = "*", optional=true }
+flaky =  { version = "*", optional = true }
+pytest = { version = "*", optional = true }
+pytest-flake8 = { version = "*", optional = true }
+simms = { version = "2.0.0", optional = true}
+casadata = { version = "*", optional = true}
 
 [build-system]
 requires = ["setuptools", "poetry-core"]
@@ -48,6 +50,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.extras]
 testing = ["pytest", "pytest-flake8", "flaky"]
+sim = ["simms", "casadata"]
 
 [tool.poetry.group.tests]
 optional = true
