@@ -51,3 +51,11 @@ jobs:
     - name: Unit testing
       run: |
         pytest
+    - name: Install optional dependencies
+      run: |
+        python -m pip install .[sim]
+    - name: Test simms cab
+      run: |
+        stimela doc nu/cabs/simms.yaml
+        stimela run nu/cabs/simms.yaml
+        ls -lrt
