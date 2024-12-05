@@ -11,7 +11,6 @@ from omegaconf import OmegaConf
 import logging
 from pathlib import Path
 from casacore.tables import table
-import IPython
 
 # Load the schema for parameters
 schema_path = os.path.join(os.path.dirname(__file__), "../cabs/corrupt.yaml")
