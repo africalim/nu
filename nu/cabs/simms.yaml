@@ -1,3 +1,12 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.taskname}
+    nest: 10
+    symlink: log
+  backend:
+    select: native
+
 cabs:
   simms:
     info: Simulate observations using KAT-7 with CASA (https://github.com/simms-tool/simms.git)
