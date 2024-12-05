@@ -61,8 +61,6 @@ cabs:
       antenna_file:
         dtype: str  # File path is handled as a string
         info: Antenna configuration file path
-        #nom_de_guerre: '-antennas'
-        default: 'Simms/observatories/KAT7_ANTENNAS'
         policies:
           positional: true  
     outputs:
