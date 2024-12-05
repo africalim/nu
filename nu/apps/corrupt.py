@@ -10,6 +10,8 @@ from scabha.schema_utils import clickify_parameters
 from omegaconf import OmegaConf
 import logging
 from pathlib import Path
+from casacore.tables import table
+import IPython
 
 # Load the schema for parameters
 schema_path = Path(__file__).parent.parent / "recipes/corrupt.yaml"
@@ -23,7 +25,7 @@ def main(**kwargs):
     logger = logging.getLogger("CorruptVisibilities")
 
     # Extract parameters
-    ms_path = kwargs.get("ms")
+    ms_path = "/home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS" #kwargs.get("ms")
     seed = kwargs.get("seed", 42)
     noise_std = kwargs.get("noise_std", 0.0)
 
@@ -37,7 +39,7 @@ def main(**kwargs):
 
     # Open the Measurement Set
     logger.info(f"Opening Measurement Set: {ms_path}")
-    xds_list = xds_from_ms(ms_path, columns=["MODEL_DATA", "ANTENNA1", "ANTENNA2"], chunks={"row": 100000})
+    xds_list = xds_from_ms(ms_path, columns=["DATA", "MODEL_DATA", "ANTENNA1", "ANTENNA2"])
 
     if not xds_list:
         logger.error("Failed to read Measurement Set.")
@@ -50,8 +52,17 @@ def main(**kwargs):
             logger.error("MODEL_DATA column not found in the Measurement Set.")
             sys.exit(1)
 
+        # Check if 'DATA' exists; create it if necessary
+        if "DATA" not in xds.data_vars:
+            logger.info("DATA column not found in the Measurement Set. Creating it.")
+            # Create a new DATA column as a copy of MODEL_DATA
+            data_column = xds.MODEL_DATA.data  # Dask array
+            xds = xds.assign(DATA=(("row", "chan", "corr"), data_column))
+        else:
+            logger.info("DATA column exists in the Measurement Set.")
+
         model_data = xds.MODEL_DATA.data  # Dask array
-        nrows, nchannels, npols = model_data.shape
+        nchannels, npols = model_data.shape[1], model_data.shape[2]
 
         antenna1 = xds.ANTENNA1.data
         antenna2 = xds.ANTENNA2.data
@@ -98,7 +109,6 @@ def main(**kwargs):
 
     # Write the updated datasets back to the MS
     logger.info("Writing corrupted data to DATA column.")
-    xds_to_table(processed_xds, ms_path, columns=["DATA"])
-
+    
+    da.compute(xds_to_table(processed_xds, ms_path, columns=["DATA"]))
     logger.info("Corruption process completed successfully.")
-
