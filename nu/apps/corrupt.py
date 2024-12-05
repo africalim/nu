@@ -24,7 +24,7 @@ def main(**kwargs):
     logger = logging.getLogger("CorruptVisibilities")
 
     # Extract parameters
-    ms_path = "/home/phil/Downloads/Africalim_Workshop/test_ascii_1h60.0s.MS" #kwargs.get("ms")
+    ms_path = kwargs.get("ms")
     seed = kwargs.get("seed", 42)
     noise_std = kwargs.get("noise_std", 0.0)
 
