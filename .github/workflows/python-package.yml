@@ -54,6 +54,7 @@ jobs:
     - name: Install optional dependencies
       run: |
         python -m pip install .[sim]
+        mkdir -p /opt/casa/data
         python -m casaconfig --measurespath /opt/casa/data --update-all
         python -m casaconfig --measurespath /opt/casa/data --current-data
     - name: Test simms cab
