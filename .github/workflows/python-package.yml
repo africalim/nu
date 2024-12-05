@@ -55,7 +55,7 @@ jobs:
       run: |
         python -m pip install .[sim]
         mkdir -p /opt/casa/data
-        echo 'measurespath = "/opt/casa/data" > casasiteconfig.py
+        echo 'measurespath = "/opt/casa/data"' > casasiteconfig.py
         cp casasiteconfig.py /opt/casa
         cat /opt/casa/casasiteconfig.py
         python -m casaconfig --measurespath /opt/casa/data --update-all
