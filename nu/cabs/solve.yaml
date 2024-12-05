@@ -7,9 +7,10 @@ opts:
 
 cabs:
   solve:
-    info: Performs phase-only calibration on the data and writes corrected data to a corrected column.
+    info: "Performs phase-only calibration on the data and writes corrected data to a corrected column."
     command: solve
     inputs:
       ms:
+        info: "The input Measurement Set (MS) path. The MS requires a DATA and a MODEL_DATA column."
         dtype: MS
         required: true

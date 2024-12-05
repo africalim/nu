@@ -11,11 +11,14 @@ cabs:
     command: corrupt
     inputs:
       ms:
+        info: "The input Measurement Set (MS) path"
         dtype: MS
         required: true
       seed:
+        info: "Randomization seed for corruption (Default: 42)"
         dtype: int
         default: 42
       noise_std:
+        info: "Can add i.i.d. noise of a given standard deviation (Default: 0.0)"
         dtype: float
         default: 0.0
