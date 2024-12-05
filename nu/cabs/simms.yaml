@@ -27,7 +27,7 @@ cabs:
         dtype: str  # Use str to define declination
         info: Declination of the observation
         nom_de_guerre: 'dec'
-        default: '-30d0m0s'
+        default: '0d0m0s'
       right_ascension:
         dtype: str  # Use str to define right ascension
         info: Right ascension of the observation
