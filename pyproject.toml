@@ -29,6 +29,7 @@ hello = "nu.apps.hello:main"
 predict = "nu.apps.predict:main"
 corrupt = "nu.apps.corrupt:main"
 solve = "nu.apps.solve:main"
+deconvolve = "nu.apps.deconvolve:main"
 
 [tool.poetry.dependencies]
 python = "^3.10, <3.13"
@@ -37,6 +38,7 @@ codex-africanus = "^0.4"
 cult-cargo = "*"
 dask-ms = "*"
 stimela = "^2.0.1"
+astropy = "*"
 
 # Optional dependencies start here
 flaky =  { version = "*", optional = true }

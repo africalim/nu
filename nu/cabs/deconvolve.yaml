@@ -1,0 +1,48 @@
+opts:
+  log:
+    dir: logs/log-{config.run.datetime}
+    name: log-{info.fqname}
+    nest: 2
+    symlink: log
+
+cabs:
+  deconvolve:
+    info: Performs a single-scale (Högbom) CLEAN deconvolution on a dirty image using a PSF and outputs a restored image.
+    command: deconvolve
+    inputs:
+      dirty_image:
+        info: Path to the dirty image FITS file
+        dtype: str
+        required: true
+      psf_image:
+        info: Path to the PSF image FITS file (same pixel scale and size)
+        dtype: str
+        required: true
+      output_image:
+        info: Path for the output restored (CLEANed) image
+        dtype: str
+        default: cleaned_image.fits
+      gain:
+        info: "The loop gain used in CLEAN (fraction of the peak subtracted each iteration) (Default: 0.1)"
+        dtype: float
+        default: 0.1
+      threshold:
+        info: "Stopping threshold for the residual peak in the same units as the image (Default: 0.0)"
+        dtype: float
+        default: 0.0
+      niter:
+        info: "Maximum number of CLEAN iterations (Default: 1000)"
+        dtype: int
+        default: 1000
+      beam_major:
+        info: "Major axis for restoring beam Gaussian profile at FWHM in arcseconds (Default: 0.0)"
+        dtype: float
+        default: 0.0
+      beam_minor:
+        info: "Minor axis for restoring beam Gaussian profile at FWHM in arcseconds (Default: 0.0)"
+        dtype: float
+        default: 0.0
+      beam_pa:
+        info: "Position angle of the beam in degrees with respect to the reference axis (Default: 0.0)"
+        dtype: float
+        default: 0.0
